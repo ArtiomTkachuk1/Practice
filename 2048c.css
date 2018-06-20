@@ -1,0 +1,55 @@
+#Board{
+	background-color:black;
+	float:left;
+}
+#buttondiv,#scorediv{
+	float:left;
+	height:50%;
+	display:table;
+}
+#textdiv{
+	display: table-cell;
+    vertical-align: middle;
+	font-size:500%;
+	color:white;
+	text-align:center;
+	margin-bottom:0;
+	margin-top:0;
+}
+.str{
+	width:100%;
+}
+.cell{
+	outline: none;
+	float:left;
+	height:100%;
+	background-color: purple;
+	box-sizing: border-box;
+	border-style: solid;
+	border-color:black;
+	color:black;
+	font-size:600%;
+	vertical-align:middle;
+}
+body{
+	margin:0;
+	background-color:black;
+}
+.buttons{
+	outline: none;
+	font-size:500%;
+	text-align:center;
+	color:white;
+	float:left;
+	height:50%;
+	width:50%;
+	background-color:black;
+	box-sizing: border-box;
+	border-width: 5%;
+	border-style: solid;
+	border-color:purple;
+}
+.buttons:hover {
+    background-color: purple; /* Green */
+    color: white;
+}
