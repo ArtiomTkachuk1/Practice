@@ -14,31 +14,31 @@ function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
 function createboard(id){
-  var md=document.getElementById(id);
-  var board=document.createElement("div");
-  board.id="Board";
-  board.align="center";
-  board.style.width=md.style.height;
-  board.style.height=md.style.height;
-  md.appendChild(board);
-  for(var i=0;i<m;i++){
-	var str=document.createElement("div");
-	str.id=i;
-	str.style.height=100/m+"%";
-	board.appendChild(str);
-	for(var j=0;j<n;j++){
-		var cell=document.createElement("button");
-		cell.className="cell";
-		cell.id=i+"_"+j;
-		cell.style.width=100/n+"%";
-		cell.paddingBottom="20%";
-		cell.paddingTop="20%";
-		str.appendChild(cell);
+	var md=document.getElementById(id);
+	var board=document.createElement("div");
+	board.id="Board";
+	board.align="center";
+	board.style.width=md.style.height;
+	board.style.height=md.style.height;
+	md.appendChild(board);
+	for(var i=0;i<m;i++){
+		var str=document.createElement("div");
+		str.id=i;
+		str.style.height=100/m+"%";
+		board.appendChild(str);
+		for(var j=0;j<n;j++){
+			var cell=document.createElement("button");
+			cell.className="cell";
+			cell.id=i+"_"+j;
+			cell.style.width=100/n+"%";
+			cell.paddingBottom="20%";
+			cell.paddingTop="20%";
+			str.appendChild(cell);
+		}
 	}
-  }
-  firsttwo();
+	refresh();
 }
-function firsttwo(){
+function refresh(){
 	for(var i=0;i<m;i++)
 		for(var j=0;j<n;j++){
 		var cell=document.getElementById(i+"_"+j);
@@ -55,12 +55,12 @@ function firsttwo(){
 	var x1=getRandomInt(m);
 	var y1=getRandomInt(n);
 	while((x1==x0)&&(y1==y0)){
-	x1=getRandomInt(m);
-	y1=getRandomInt(n);
-  }
-  bm[x1][y1]=getRandomInt(2);
-  var c1=document.getElementById(x1+"_"+y1);
-  c1.innerHTML=numbers[bm[x1][y1]];
+		x1=getRandomInt(m);
+		y1=getRandomInt(n);
+	}
+	bm[x1][y1]=getRandomInt(2);
+	var c1=document.getElementById(x1+"_"+y1);
+	c1.innerHTML=numbers[bm[x1][y1]];
 }
 function createothergui(id){
 	var board=document.getElementById("Board");
@@ -269,7 +269,7 @@ function checklose(){
 	var textdiv=document.getElementById("textdiv");
 	textdiv.innerHTML="Score:"+"<br>"+score;
 	alert("Game over");
-	firsttwo();
+	refresh();
 	return true;
 }
 function create(id){
