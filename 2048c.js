@@ -4,7 +4,7 @@ var n=4;
 var numbers=["2","4","8","16","32","64","128","256","512","1024","2048","4096","8192","16384"];
 var intnumbers=[2,4,8,16,32,64,128,256,512,1024,2048,4096,8192,16384];
 var bm=new Array()
-  for(var i=0;i<m;i++){
+	for(var i=0;i<m;i++){
 		bm[i]=new Array();
 		for(var j=0;j<n;j++)
 			bm[i].push(-1);
@@ -36,14 +36,20 @@ function createboard(id){
 		str.appendChild(cell);
 	}
   }
-  var x0=getRandomInt(4);
-  var y0=getRandomInt(4);
-  bm[x0][y0]=getRandomInt(2);
-  var c0=document.getElementById(x0+"_"+y0);
-  c0.innerHTML=numbers[bm[x0][y0]];
-  var x1=getRandomInt(4);
-  var y1=getRandomInt(4);
-  while((x1==x0)&&(y1==y0)){
+  firsttwo();
+}
+function firsttwo(){
+	for(var i=0;i<m;i++)
+		for(var j=0;j<n;j++)
+			bm[i][j]=-1;
+	var x0=getRandomInt(4);
+	var y0=getRandomInt(4);
+	bm[x0][y0]=getRandomInt(2);
+	var c0=document.getElementById(x0+"_"+y0);
+	c0.innerHTML=numbers[bm[x0][y0]];
+	var x1=getRandomInt(4);
+	var y1=getRandomInt(4);
+	while((x1==x0)&&(y1==y0)){
 	x1=getRandomInt(4);
 	y1=getRandomInt(4);
   }
@@ -237,7 +243,7 @@ function comon(){
 			if (bm[i][j]==-1)cell.innerHTML="";
 			else cell.innerHTML=numbers[bm[i][j]];
 		}
-	if(checklose==true){
+	if(checklose()==true){
 		alert("Game over");
 		for(var i=0;i<m;i++)
 			for(var j=0;j<n;j++){
@@ -245,21 +251,21 @@ function comon(){
 				cell.innerHTML="";
 			}
 		score=0;
+		var textdiv=document.getElementById("textdiv");
+		textdiv.innerHTML="Score:"+"<br>"+score;
+		firsttwo();
 	}
 }
 function checklose(){
 	for(var i=0;i<m;i++)
-		for(var j=0;j<n;j++){
+		for(var j=0;j<n;j++)
 			if(bm[i][j]==-1)return false;
-		}
 	for(var i=0;i<m;i++)
-		for(var j=0;i<n-1;j++){
+		for(var j=0;j<n-1;j++)
 			if(bm[i][j]==bm[i][j+1])return false;
-		}
 	for(var i=0;i<n;i++)
-		for(var j=0;i<m-1;j++){
+		for(var j=0;j<m-1;j++)
 			if(bm[j][i]==bm[j+1][i])return false;
-		}
 	return true;
 }
 function create(id){
