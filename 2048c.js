@@ -40,18 +40,23 @@ function createboard(id){
 }
 function firsttwo(){
 	for(var i=0;i<m;i++)
+		for(var j=0;j<n;j++){
+		var cell=document.getElementById(i+"_"+j);
+			cell.innerHTML="";
+		}
+	for(var i=0;i<m;i++)
 		for(var j=0;j<n;j++)
 			bm[i][j]=-1;
-	var x0=getRandomInt(4);
-	var y0=getRandomInt(4);
+	var x0=getRandomInt(m);
+	var y0=getRandomInt(n);
 	bm[x0][y0]=getRandomInt(2);
 	var c0=document.getElementById(x0+"_"+y0);
 	c0.innerHTML=numbers[bm[x0][y0]];
-	var x1=getRandomInt(4);
-	var y1=getRandomInt(4);
+	var x1=getRandomInt(m);
+	var y1=getRandomInt(n);
 	while((x1==x0)&&(y1==y0)){
-	x1=getRandomInt(4);
-	y1=getRandomInt(4);
+	x1=getRandomInt(m);
+	y1=getRandomInt(n);
   }
   bm[x1][y1]=getRandomInt(2);
   var c1=document.getElementById(x1+"_"+y1);
@@ -106,6 +111,7 @@ document.addEventListener('keydown', (event) => {
 	if(keyName=="ArrowRight")eright();
 });
 function etop(){
+	if(checklose()==true) return;
 	if(canmovetop()==true){
 		for(var i=0;i<n;i++){
 			var buf=new Array();
@@ -137,6 +143,7 @@ function canmovetop(){
 	return false;
 }
 function ebottom(){
+	if(checklose()==true) return;
 	if(canmovebottom()==true){
 		for(var i=0;i<n;i++){
 			var buf=new Array();
@@ -168,6 +175,7 @@ function canmovebottom(){
 	return false;
 }
 function eleft(){
+	if(checklose()==true) return;
 	if(canmoveleft()==true){
 		for(var i=0;i<m;i++){
 			var buf=new Array();
@@ -199,6 +207,7 @@ function canmoveleft(){
 	return false;
 }
 function eright(){
+	if(checklose()==true) return;
 	if(canmoveright()==true){
 		for(var i=0;i<m;i++){
 			var buf=new Array();
@@ -230,31 +239,21 @@ function canmoveright(){
 	return false;
 }
 function comon(){
-	var x1=getRandomInt(4);
-	var y1=getRandomInt(4);
+	var x1=getRandomInt(m);
+	var y1=getRandomInt(n);
 	while(bm[x1][y1]!=-1){
-		x1=getRandomInt(4);
-		y1=getRandomInt(4);
+		x1=getRandomInt(m);
+		y1=getRandomInt(n);
 	}
 	bm[x1][y1]=getRandomInt(2);
+	var cell=document.getElementById(x1+"_"+y1);
+	cell.innerHTML=numbers[bm[x1][y1]];
 	for(var i=0;i<m;i++)
 		for(var j=0;j<n;j++){
 			var cell=document.getElementById(i+"_"+j);
 			if (bm[i][j]==-1)cell.innerHTML="";
 			else cell.innerHTML=numbers[bm[i][j]];
 		}
-	if(checklose()==true){
-		alert("Game over");
-		for(var i=0;i<m;i++)
-			for(var j=0;j<n;j++){
-			var cell=document.getElementById(i+"_"+j);
-				cell.innerHTML="";
-			}
-		score=0;
-		var textdiv=document.getElementById("textdiv");
-		textdiv.innerHTML="Score:"+"<br>"+score;
-		firsttwo();
-	}
 }
 function checklose(){
 	for(var i=0;i<m;i++)
@@ -266,6 +265,11 @@ function checklose(){
 	for(var i=0;i<n;i++)
 		for(var j=0;j<m-1;j++)
 			if(bm[j][i]==bm[j+1][i])return false;
+	score=0;
+	var textdiv=document.getElementById("textdiv");
+	textdiv.innerHTML="Score:"+"<br>"+score;
+	alert("Game over");
+	firsttwo();
 	return true;
 }
 function create(id){
