@@ -3,6 +3,7 @@ var m=4;
 var n=4;
 var numbers=["2","4","8","16","32","64","128","256","512","1024","2048","4096","8192","16384"];
 var intnumbers=[2,4,8,16,32,64,128,256,512,1024,2048,4096,8192,16384];
+var colors=["red","orange","yellow","green","blue","brown"]
 var bm=new Array()
 	for(var i=0;i<m;i++){
 		bm[i]=new Array();
@@ -43,6 +44,7 @@ function refresh(){
 		for(var j=0;j<n;j++){
 		var cell=document.getElementById(i+"_"+j);
 			cell.innerHTML="";
+			cell.style.backgroundColor="purple";
 		}
 	for(var i=0;i<m;i++)
 		for(var j=0;j<n;j++)
@@ -52,6 +54,7 @@ function refresh(){
 	bm[x0][y0]=getRandomInt(2);
 	var c0=document.getElementById(x0+"_"+y0);
 	c0.innerHTML=numbers[bm[x0][y0]];
+	c0.style.backgroundColor=colors[bm[x0][y0]%6];
 	var x1=getRandomInt(m);
 	var y1=getRandomInt(n);
 	while((x1==x0)&&(y1==y0)){
@@ -61,6 +64,7 @@ function refresh(){
 	bm[x1][y1]=getRandomInt(2);
 	var c1=document.getElementById(x1+"_"+y1);
 	c1.innerHTML=numbers[bm[x1][y1]];
+	c1.style.backgroundColor=colors[bm[x1][y1]%6];
 }
 function createothergui(id){
 	var board=document.getElementById("Board");
@@ -251,8 +255,14 @@ function comon(){
 	for(var i=0;i<m;i++)
 		for(var j=0;j<n;j++){
 			var cell=document.getElementById(i+"_"+j);
-			if (bm[i][j]==-1)cell.innerHTML="";
-			else cell.innerHTML=numbers[bm[i][j]];
+			if (bm[i][j]==-1){
+				cell.innerHTML="";
+				cell.style.backgroundColor="purple";
+			}
+			else {
+				cell.innerHTML=numbers[bm[i][j]];
+				cell.style.backgroundColor=colors[bm[i][j]%6];
+			}
 		}
 }
 function checklose(){
