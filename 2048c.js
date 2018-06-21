@@ -262,6 +262,8 @@ function comon(){
 			else {
 				cell.innerHTML=numbers[bm[i][j]];
 				cell.style.backgroundColor=colors[bm[i][j]%6];
+				if(bm[i][j]>8)cell.style.fontSize="300%";
+				else cell.style.fontSize="600%";
 			}
 		}
 }
