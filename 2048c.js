@@ -115,7 +115,7 @@ document.addEventListener('keydown', (event) => {
 	if(keyName=="ArrowRight")eright();
 });
 function etop(){
-	if(checklose()==true) return;
+	if(checklose()==true){end(); return;}
 	if(canmovetop()==true){
 		for(var i=0;i<n;i++){
 			var buf=new Array();
@@ -147,7 +147,7 @@ function canmovetop(){
 	return false;
 }
 function ebottom(){
-	if(checklose()==true) return;
+	if(checklose()==true){end(); return;}
 	if(canmovebottom()==true){
 		for(var i=0;i<n;i++){
 			var buf=new Array();
@@ -179,7 +179,7 @@ function canmovebottom(){
 	return false;
 }
 function eleft(){
-	if(checklose()==true) return;
+	if(checklose()==true){end(); return;}
 	if(canmoveleft()==true){
 		for(var i=0;i<m;i++){
 			var buf=new Array();
@@ -211,7 +211,7 @@ function canmoveleft(){
 	return false;
 }
 function eright(){
-	if(checklose()==true) return;
+	if(checklose()==true){end(); return;}
 	if(canmoveright()==true){
 		for(var i=0;i<m;i++){
 			var buf=new Array();
@@ -255,7 +255,7 @@ function comon(){
 	for(var i=0;i<m;i++)
 		for(var j=0;j<n;j++){
 			var cell=document.getElementById(i+"_"+j);
-			if (bm[i][j]==-1){
+				if (bm[i][j]==-1){
 				cell.innerHTML="";
 				cell.style.backgroundColor="purple";
 			}
@@ -275,12 +275,14 @@ function checklose(){
 	for(var i=0;i<n;i++)
 		for(var j=0;j<m-1;j++)
 			if(bm[j][i]==bm[j+1][i])return false;
+	return true;
+}
+function end(){
 	score=0;
 	var textdiv=document.getElementById("textdiv");
 	textdiv.innerHTML="Score:"+"<br>"+score;
 	alert("Game over");
 	refresh();
-	return true;
 }
 function create(id){
 	var md=document.getElementById(id);
