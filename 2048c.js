@@ -121,7 +121,6 @@ function etop(){
 			var buf=new Array();
 			for(var j=0;j<m;j++)
 				if(bm[j][i]!=-1)buf.push(bm[j][i]);
-			var j1=0;
 			var buf1=new Array();
 			for(var j=0;j<buf.length;j++){
 				if(buf[j]==buf[j+1]){
@@ -153,7 +152,6 @@ function ebottom(){
 			var buf=new Array();
 			for(var j=m-1;j>=0;j--)
 				if(bm[j][i]!=-1)buf.push(bm[j][i]);
-			var j1=0;
 			var buf1=new Array();
 			for(var j=0;j<buf.length;j++){
 				if(buf[j]==buf[j+1]){
@@ -185,7 +183,6 @@ function eleft(){
 			var buf=new Array();
 			for(var j=0;j<n;j++)
 				if(bm[i][j]!=-1)buf.push(bm[i][j]);
-			var j1=0;
 			var buf1=new Array();
 			for(var j=0;j<buf.length;j++){
 				if(buf[j]==buf[j+1]){
@@ -217,7 +214,6 @@ function eright(){
 			var buf=new Array();
 			for(var j=n-1;j>=0;j--)
 				if(bm[i][j]!=-1)buf.push(bm[i][j]);
-			var j1=0;
 			var buf1=new Array();
 			for(var j=0;j<buf.length;j++){
 				if(buf[j]==buf[j+1]){
@@ -250,12 +246,10 @@ function comon(){
 		y1=getRandomInt(n);
 	}
 	bm[x1][y1]=getRandomInt(2);
-	var cell=document.getElementById(x1+"_"+y1);
-	cell.innerHTML=numbers[bm[x1][y1]];
 	for(var i=0;i<m;i++)
 		for(var j=0;j<n;j++){
 			var cell=document.getElementById(i+"_"+j);
-				if (bm[i][j]==-1){
+			if (bm[i][j]==-1){
 				cell.innerHTML="";
 				cell.style.backgroundColor="purple";
 			}
